@@ -1,0 +1,13 @@
+deepspeech:
+  model: models/output_graph.pbmm
+  alphabet: models/alphabet.txt
+  lm: models/lm.binary
+  trie: models/trie
+  lm_weight: 1.5
+  num_features: 26
+  num_context: 9
+  beam_width: 512
+  valid_word_count_weight: 2.25
+server:
+  host: '0.0.0.0'
+  port: 8080

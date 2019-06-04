@@ -1,0 +1,14 @@
+#! /bin/sh
+#
+# A sample script that uses sox and the example client to stream audio from the
+# microphone directly to the server in real time. Once 2 seconds of silence are
+# detected, the recording is stopped and the transcript is returned.
+#
+# You may need to adjust the microphone volume for best results. Too loud and
+# the silence won't be correctly detected, too quiet and the server won't be
+# able to process the audio
+#
+SILENCE_TIME="00:02"
+SILENCE_THRESHOLD="5%"
+
+rec -c 1 -r 16000 -t wav - silence 1 0.50 0.1% 1 $SILENCE_TIME $SILENCE_THRESHOLD | $(dirname $0)/client.py - "$@"
