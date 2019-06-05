@@ -70,3 +70,4 @@ client very promptly once the audio clip was finished.
 [DeepSpeech]: https://github.com/mozilla/DeepSpeech
 [DeepSpeech Streaming]: https://hacks.mozilla.org/2018/09/speech-recognition-deepspeech/
 [HTTP chunks]: https://en.wikipedia.org/wiki/Chunked_transfer_encoding
+[Pipenv]: https://docs.pipenv.org/en/latest/
