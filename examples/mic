@@ -11,4 +11,12 @@
 SILENCE_TIME="00:02"
 SILENCE_THRESHOLD="5%"
 
-rec -c 1 -r 16000 -t wav - silence 1 0.50 0.1% 1 $SILENCE_TIME $SILENCE_THRESHOLD | $(dirname $0)/client.py - "$@"
+if [ -z "$1" ]; then
+    echo "Server must be specified"
+    exit 1
+fi
+
+SERVER="$1"
+shift
+
+rec -c 1 -t raw -r 16k -e signed -b 16 - silence 1 0.50 0.1% 1 $SILENCE_TIME $SILENCE_THRESHOLD | $(dirname $0)/client.py - "http://$SERVER/stt?format=16K_PCM16" "$@"

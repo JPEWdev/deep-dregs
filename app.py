@@ -76,6 +76,15 @@ async def handle_stt_wav(request, ctx):
 
     return sample_time
 
+async def handle_stt_raw(request, ctx, framerate, sampwidth):
+    while True:
+        frames = await request.content.read(sampwidth * 512)
+        if not frames:
+            break
+        await ctx.feedRawAudioContent(frames)
+
+    return ctx.num_frames / framerate
+
 @routes.post('/stt')
 async def handle_stt(request):
     logging.info("Processing Stream...")
@@ -83,7 +92,14 @@ async def handle_stt(request):
     ctx = ASyncContext(model)
     await ctx.setupStream()
 
-    sample_time = await handle_stt_wav(request, ctx)
+    fmt = request.query.get('format', 'wav')
+
+    if fmt == 'wav':
+        sample_time = await handle_stt_wav(request, ctx)
+    elif fmt == '16K_PCM16':
+        sample_time = await handle_stt_raw(request, ctx, 16000, 2)
+    else:
+        raise web.HTTPBadRequest()
 
     text = await ctx.finishStream()
     logging.info("Inference took %.03fs for %.03fs audio sample with %.03fs latency. Total time: %.03fs" %
