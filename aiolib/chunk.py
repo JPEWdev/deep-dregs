@@ -1,4 +1,8 @@
 #
+# Copyright 2019 Joshua Watt <JPEW.hacker@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+#
 # Copied from Python 3.7 (originally licensed under the PSFL), reworked to
 # operate asynchronously
 #

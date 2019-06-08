@@ -1,5 +1,9 @@
 #! /usr/bin/env python3
 #
+# Copyright 2019 Joshua Watt <JPEW.hacker@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+#
 # A sample client showing how to use both synchronus and asynchronous APIs to
 # send data to the server
 #

@@ -1,4 +1,8 @@
 #! /usr/bin/env python3
+#
+# Copyright 2019 Joshua Watt <JPEW.hacker@gmail.com>
+#
+# SPDX-License-Identifier: MIT
 
 from aiohttp import web
 import deepspeech
